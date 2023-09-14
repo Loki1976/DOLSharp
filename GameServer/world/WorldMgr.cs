@@ -345,10 +345,10 @@ namespace DOL.GS
 			if (ServerProperties.Properties.DEBUG_LOAD_REGIONS != string.Empty)
 			{	
 				// Lets not load mobs in disabled regions **Loki**			
-                mobList.AddRange(DOLDB<Mob>.SelectObjects(DB.Column(nameof(Mob.Region)).IsNotIn(Util.SplitCSV(ServerProperties.Properties.DISABLED_REGIONS, true))));                
-            
-			}
-			else
+                mobList.AddRange(DOLDB<Mob>.SelectObjects(DB.Column(nameof(Mob.Region)).IsNotEqualTo(Util.SplitCSV(ServerProperties.Properties.DISABLED_REGIONS, true))));
+                
+            }
+            else
 			{
 				mobList.AddRange(GameServer.Database.SelectAllObjects<Mob>());
 			}
